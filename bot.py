@@ -33,7 +33,7 @@ async def handle_photo(message: types.Message):
                 "content": ("content.jpg", user_images[message.from_user.id]["content"]),
                 "style": ("style.jpg", content),
             }
-            r = requests.post(API_URL, files=files)п
+            r = requests.post(API_URL, files=files)
 
             if r.status_code == 200:
                 with open("result.jpg", "wb") as f:
