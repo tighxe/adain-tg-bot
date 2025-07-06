@@ -11,6 +11,7 @@ from aiogram.utils.token import validate_token
 from aiogram import Router
 
 from aiofiles.tempfile import NamedTemporaryFile
+from aiogram.client.default import DefaultBotProperties
 
 TG_BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
 API_URL = os.getenv("API_URL")
@@ -23,7 +24,12 @@ logging.basicConfig(level=logging.INFO)
 
 # Создаём сессию, бота, диспетчер и роутер
 session = AiohttpSession()
-bot = Bot(token=TG_BOT_TOKEN, session=session, parse_mode=ParseMode.HTML)
+bot = Bot(
+    token=TG_BOT_TOKEN,
+    session=session,
+    default=DefaultBotProperties(parse_mode=ParseMode.HTML),
+)
+
 dp = Dispatcher(storage=MemoryStorage())
 router = Router()
 dp.include_router(router)
